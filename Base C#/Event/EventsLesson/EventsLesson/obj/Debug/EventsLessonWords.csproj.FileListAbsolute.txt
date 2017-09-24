@@ -1,0 +1,6 @@
+C:\Users\goryn\source\repos\EventsLesson\EventsLesson\bin\Debug\EventsLesson.exe.config
+C:\Users\goryn\source\repos\EventsLesson\EventsLesson\bin\Debug\EventsLesson.exe
+C:\Users\goryn\source\repos\EventsLesson\EventsLesson\bin\Debug\EventsLesson.pdb
+C:\Users\goryn\source\repos\EventsLesson\EventsLesson\obj\Debug\EventsLessonWords.csproj.CoreCompileInputs.cache
+C:\Users\goryn\source\repos\EventsLesson\EventsLesson\obj\Debug\EventsLesson.exe
+C:\Users\goryn\source\repos\EventsLesson\EventsLesson\obj\Debug\EventsLesson.pdb
