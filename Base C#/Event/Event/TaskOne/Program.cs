@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EventsLessonWords 
+namespace TaskOne
 {
-    public delegate void PressKeyEventHandler();  
-    
+    public delegate void PressKeyEventHandler();
+
     public class Keywords
     {
         public event PressKeyEventHandler presskeyA = null;
@@ -15,7 +15,7 @@ namespace EventsLessonWords
 
         public void PressKeyAEvent()
         {
-            if(presskeyA != null)
+            if (presskeyA != null)
             {
                 presskeyA();
             }
@@ -23,7 +23,7 @@ namespace EventsLessonWords
 
         public void PressKeyBEvent()
         {
-            if(presskeyB != null)
+            if (presskeyB != null)
             {
                 presskeyB();
             }
@@ -87,7 +87,6 @@ namespace EventsLessonWords
             key.presskeyB += PressKeyB_Handler;
 
             key.Start();
-
         }
     }
 }

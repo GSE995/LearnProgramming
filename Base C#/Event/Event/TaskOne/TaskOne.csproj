@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E0896EC5-3ADB-4309-831F-2FFB09887D88}</ProjectGuid>
+    <ProjectGuid>{8C87E795-EDC7-47F7-B58F-37368095C9F0}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EventsLesson</RootNamespace>
-    <AssemblyName>EventsLesson</AssemblyName>
+    <RootNamespace>TaskOne</RootNamespace>
+    <AssemblyName>TaskOne</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
