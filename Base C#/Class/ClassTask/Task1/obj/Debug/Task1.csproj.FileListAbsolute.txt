@@ -1,0 +1,7 @@
+c:\users\goryn\source\repos\ClassTask\Task1\bin\Debug\Task1.exe.config
+c:\users\goryn\source\repos\ClassTask\Task1\bin\Debug\Task1.exe
+c:\users\goryn\source\repos\ClassTask\Task1\bin\Debug\Task1.pdb
+c:\users\goryn\source\repos\ClassTask\Task1\obj\Debug\Task1.csproj.CoreCompileInputs.cache
+c:\users\goryn\source\repos\ClassTask\Task1\obj\Debug\Task1.exe
+c:\users\goryn\source\repos\ClassTask\Task1\obj\Debug\Task1.pdb
+c:\users\goryn\source\repos\ClassTask\Task1\obj\Debug\Task1.csprojResolveAssemblyReference.cache
