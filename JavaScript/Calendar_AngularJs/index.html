@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html ng-app="myCalendar">
+<head>
+	<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.js">	
+
+	</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<script src="app.js"></script>
+</head>
+	<body ng-controller="setDay">
+
+		<div class="wrapper">
+
+  			<div id="calendarContainer">
+  				<div class="calendar small">
+
+  					<!-- Верхнее табло с годом -->
+  					<div class="year" style="background-color: rgb(194, 24, 91); color: rgb(248, 187, 208);">
+  						<div id="calendarContainer-year-back" ng-click="backYear()">
+  							<svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+  								<path fill="#f8bbd0" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+  							</svg>
+  						</div>
+  						<span id="calendarContainer-year">{{date.getFullYear()}}</span>
+  						<div id="calendarContainer-year-next" ng-click="nextYear()">
+  							<svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+  								<path fill="#f8bbd0" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z">
+  									
+  								</path>
+  							</svg>
+  						</div>
+  					</div>
+  					<!-- табло с месяцем -->
+  					<div class="month" style="background-color: rgb(233, 30, 99); color: rgb(255, 255, 255);">
+  						<div id="calendarContainer-month-back" ng-click="backMonth()">
+  							<svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+  								<path fill="#f8bbd0" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+  							</svg>
+  						</div>
+  						<span id="calendarContainer-month">{{monthNow}}</span>
+  						<div id="calendarContainer-month-next" ng-click="nextMonth()">
+  							<svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+  								<path fill="#f8bbd0" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+  							</svg>
+  						</div>
+  					</div>
+					<!-- табло с неделями -->
+  					<div class="labels" style="background-color: rgb(194, 24, 91); color: rgb(248, 187, 208);" >
+  						<span id="calendarContainer-label-1" ng-repeat="labl in lables" >{{labl}}</span>
+  						
+  					</div>
+
+
+  				<div class="days">
+  						
+  					<div class="row">
+  							
+    					
+					</div>
+
+  					<div class="row">
+  								
+  					</div>
+
+  					<div class="row">
+  							
+  					</div>
+
+  					<div class="row">
+  							
+  					</div>
+
+  					<div class="row">
+  							
+  						</div>
+
+  					<div class="row">
+  							
+  						</div>
+
+  					<div class="row">
+  								
+  						</div>
+
+  					</div>
+
+  				</div>
+  			</div>
+
+
+<div id="organizerContainer" style="margin-left: 8px;">
+	<div class="events small">
+		<div class="date" style="background-color: rgb(194, 24, 91); color: rgb(248, 187, 208);">
+			<div id="organizerContainer-day-back" ng-click="backDay()">
+				<svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+					<path fill="#f8bbd0" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z">
+					</path>
+				</svg>
+			</div>
+			<span id="organizerContainer-date">{{monthNow + " " + selectDay + ", " + year}}</span>
+			<div id="organizerContainer-day-next"  ng-click="nextDay()">
+				<svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+					<path fill="#f8bbd0" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+				</svg>
+			</div>
+		</div>
+		<div class="rows">
+			<ol class="list" id="organizerContainer-list"></ol>
+		</div>
+	</div>
+</div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+
+	
+</body></html>
+<!-- <label class="calendarContainer day" ng-repeat="dayOne in select(0, 7) track by $index">
+  							<span id="calendarContainer-day-num-1" >{{dayOne}}</span>
+  						</label> -->
