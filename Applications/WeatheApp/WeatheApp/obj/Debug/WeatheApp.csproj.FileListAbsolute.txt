@@ -1,0 +1,12 @@
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\bin\Debug\WeatheApp.exe.config
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\bin\Debug\WeatheApp.exe
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\bin\Debug\WeatheApp.pdb
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.csprojResolveAssemblyReference.cache
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.Form1.resources
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.Properties.Resources.resources
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.csproj.GenerateResource.Cache
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.csproj.CoreCompileInputs.cache
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.exe
+C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.pdb
