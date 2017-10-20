@@ -1,0 +1,6 @@
+C:\Users\goryn\source\repos\Patterns\Builder\obj\Debug\Builder.csproj.CoreCompileInputs.cache
+C:\Users\goryn\source\repos\Patterns\Builder\bin\Debug\Builder.exe.config
+C:\Users\goryn\source\repos\Patterns\Builder\bin\Debug\Builder.exe
+C:\Users\goryn\source\repos\Patterns\Builder\bin\Debug\Builder.pdb
+C:\Users\goryn\source\repos\Patterns\Builder\obj\Debug\Builder.exe
+C:\Users\goryn\source\repos\Patterns\Builder\obj\Debug\Builder.pdb
