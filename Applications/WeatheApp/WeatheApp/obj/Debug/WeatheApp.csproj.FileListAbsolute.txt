@@ -10,3 +10,15 @@ C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.csproj.Gener
 C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.csproj.CoreCompileInputs.cache
 C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.exe
 C:\Users\goryn\source\repos\WeatheApp\WeatheApp\obj\Debug\WeatheApp.pdb
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\bin\Debug\WeatheApp.exe.config
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\bin\Debug\WeatheApp.exe
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\bin\Debug\WeatheApp.pdb
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\bin\Debug\Newtonsoft.Json.dll
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\bin\Debug\Newtonsoft.Json.xml
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\obj\Debug\WeatheApp.csprojResolveAssemblyReference.cache
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\obj\Debug\WeatheApp.Form1.resources
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\obj\Debug\WeatheApp.Properties.Resources.resources
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\obj\Debug\WeatheApp.csproj.GenerateResource.Cache
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\obj\Debug\WeatheApp.csproj.CoreCompileInputs.cache
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\obj\Debug\WeatheApp.exe
+E:\ForGit\Prog\Applications\WeatheApp\WeatheApp\obj\Debug\WeatheApp.pdb
