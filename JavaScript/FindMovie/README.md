@@ -1,4 +1,4 @@
-# organizer
+# findMovie
 
 > Clear JavaScript project!
 
