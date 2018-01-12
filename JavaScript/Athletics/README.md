@@ -4,9 +4,6 @@ A Vue.js project (frontend)
 node.js, espress, mysql (backend)
 deloyed on azure https://athleticsapps.azurewebsites.net/
 
-```
-![view](https://github.com/GSE995/Prog/raw/StanislavG/JavaScript/Organizer_vuejs/Organizer/Organizer.png)
-```
 
 ## Build Setup
 

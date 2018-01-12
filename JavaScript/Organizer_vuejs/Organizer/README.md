@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+## View
+
+![Screenshot](Organizer.png)
+
 ## Build Setup
 
 ``` bash
