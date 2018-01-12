@@ -4,6 +4,6 @@
 
 ## View
 
-![Screenshot](findMovie.png)
+![Screenshot](findMovie.PNG)
 
 
