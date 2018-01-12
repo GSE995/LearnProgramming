@@ -1,7 +1,0 @@
-C:\Users\goryn\source\repos\Patterns\Factory\bin\Debug\Factory.exe.config
-C:\Users\goryn\source\repos\Patterns\Factory\bin\Debug\Factory.exe
-C:\Users\goryn\source\repos\Patterns\Factory\bin\Debug\Factory.pdb
-C:\Users\goryn\source\repos\Patterns\Factory\obj\Debug\Factory.csprojResolveAssemblyReference.cache
-C:\Users\goryn\source\repos\Patterns\Factory\obj\Debug\Factory.csproj.CoreCompileInputs.cache
-C:\Users\goryn\source\repos\Patterns\Factory\obj\Debug\Factory.exe
-C:\Users\goryn\source\repos\Patterns\Factory\obj\Debug\Factory.pdb

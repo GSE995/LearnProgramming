@@ -1,7 +1,0 @@
-C:\Users\goryn\OneDrive\Документы\Visual Studio 2017\Event\TaskOne\bin\Debug\TaskOne.exe.config
-C:\Users\goryn\OneDrive\Документы\Visual Studio 2017\Event\TaskOne\bin\Debug\TaskOne.exe
-C:\Users\goryn\OneDrive\Документы\Visual Studio 2017\Event\TaskOne\bin\Debug\TaskOne.pdb
-C:\Users\goryn\OneDrive\Документы\Visual Studio 2017\Event\TaskOne\obj\Debug\TaskOne.csprojResolveAssemblyReference.cache
-C:\Users\goryn\OneDrive\Документы\Visual Studio 2017\Event\TaskOne\obj\Debug\TaskOne.csproj.CoreCompileInputs.cache
-C:\Users\goryn\OneDrive\Документы\Visual Studio 2017\Event\TaskOne\obj\Debug\TaskOne.exe
-C:\Users\goryn\OneDrive\Документы\Visual Studio 2017\Event\TaskOne\obj\Debug\TaskOne.pdb
