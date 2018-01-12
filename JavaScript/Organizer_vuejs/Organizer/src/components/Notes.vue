@@ -13,20 +13,18 @@
       <hr>
     </div>
     <div class="row">
-    <div class="col-12" style="texr-align: left; font-weight: normal;"> 
-            <div class="list-group-item itm" v-for="(it, index) in notes" v-bind:key="it" >
-             <span  class="">  {{it}} </span>
-               <button class="btn btn-outline-danger" id="deleted" v-on:click="removeItem(index)">x</button> 
+    <div class="col-12" style="texr-align: left; font-weight: normal;">
+            <div class="list-group-item itm" v-for="(it, index) in notes" v-bind:key="index" >
+             <span>  {{it}} </span>
+               <button class="btn btn-outline-danger" id="deleted" v-on:click="removeItem(index)">x</button>
+               <button class="btn btn-outline-danger" id="deleted" v-on:click="changeItem(index)">-</button>
             </div>
-            <textarea wrap="soft" class="form-control" v-if="show" v-model="add" v-on:keyup.enter="addItem"></textarea>
-            <button class="btn" style="margin-top: 5px"  @click="show = !show">+</button>
-            <button class="btn" style="margin-top: 5px" >-</button>
-        </div>  
+            <!-- <input wrap="soft" class="form-control" v-if="show" v-model.lazy="add" v-on:keyup.enter="addItem"/> -->
+            <textarea wrap="soft" class="form-control" v-model="add" v-on:keyup.enter="addItem"></textarea>
+            <!-- <button class="btn" style="margin-top: 5px" @click="show = !show">+</button> -->
+            <button class="btn" style="margin-top: 5px" @click="addItem">+</button>
+        </div>
     </div>
-    <!-- <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center itm" v-for="(it, index) in notes" v-bind:key="it">
-        </li>
-        </ul> -->
   </div>
 </template>
 
@@ -42,25 +40,22 @@ export default {
         }
     },
     methods: {
-        validText(text){
-
-        },
-        addItem(){             
+        addItem(){
             if(this.notes.length){
                 for(let i = 0; i < this.userData.length; i++){
-                    if(this.userData[i]['data'] == `${this.day}.${this.month}.${this.year}`){
+                    if(this.userData[i]['date'] == `${this.day}.${this.month}.${this.year}`){
                         this.userData[i]['notes'].push(this.add);
                     }
-                }     
-            } else { 
+                }
+            } else {
                 var obj = {
                     day: this.day,
                     month: this.month,
                     year: this.year,
-                    data:  `${this.day}.${this.month}.${this.year}`,
+                    date:  `${this.day}.${this.month}.${this.year}`,
                     notes: [this.add]
                 }
-                this.userData.push(obj);                   
+                this.userData.push(obj);
             }
 
             firebase.database().ref('users/' + this.uid).set({
@@ -71,18 +66,35 @@ export default {
         },
         removeItem(index){
             for(let i = 0; i < this.userData.length; i++){
-                if(this.userData[i]['data'] == `${this.day}.${this.month}.${this.year}`){
+                if(this.userData[i]['date'] == `${this.day}.${this.month}.${this.year}`){
                     if(this.userData[i]['notes'].length == 1){
                         this.userData.splice(i, 1);
                     }else{
-                         this.userData[i]['notes'].splice(index, 1);  
+                         this.userData[i]['notes'].splice(index, 1);
                     }
                 }
-            }  
+            }
 
             firebase.database().ref('users/' + this.uid).set({
                 items: this.userData
             });
+        },
+        changeItem(index){
+          if(!this.show){
+              this.show = true;
+          }
+
+          for(let i = 0; i < this.userData.length; i++){
+                if(this.userData[i]['date'] == `${this.day}.${this.month}.${this.year}`){
+                    if(this.userData[i]['notes'].length == 1){
+                        this.add = this.userData[i].notes[0];
+                        this.userData.splice(i, 1);
+                    }else{
+                        this.add = this.userData[i]['notes'].splice(index, 1);
+                        this.userData[i]['notes'].splice(index, 1);
+                    }
+                }
+            }
         },
         nextDay(){
             let day = this.day;
@@ -93,22 +105,23 @@ export default {
             let day = this.day;
             this.$emit("backDay", --day);
             this.show = false;
-        },   
+        },
     },
     computed: {
         notes(){
             let arr = [];
-            
-            if(this.userData){
+
+            if(this.userData.length){
                 for(let i = 0; i < this.userData.length; i++){
-                    if(this.userData[i]['data'] == `${this.day}.${this.month}.${this.year}`){
+                    if(this.userData[i]['date'] == `${this.day}.${this.month}.${this.year}`){
+
                         arr = this.userData[i]['notes'];
                     }
-                }   
+                }
             }
 
              let cellcollect = document.getElementsByClassName('cell');
-            
+
             for(let i = 0; i < cellcollect.length; i++){
                 cellcollect[i].style.color = '';
             }
@@ -118,8 +131,7 @@ export default {
                     let el = document.getElementById(this.userData[i]['day']);
                     el.style.color = '#FB7777';
                 }
-            } 
-
+            }
             return arr;
         }
     },
@@ -129,8 +141,8 @@ export default {
         takeItem.on('value', (data)=>{
             if(data.val()){
                 this.userData = data.val();
-            } 
-        }); 
+            }
+        });
     }
 }
 </script>
@@ -141,6 +153,13 @@ export default {
 #deleted{
    visibility: hidden;
 }
+#change{
+   visibility: hidden;
+}
+.itm:hover #change{
+    visibility: visible;
+}
+
 .itm:hover #deleted{
     visibility: visible;
 }
@@ -159,7 +178,7 @@ export default {
 }
 .fa{
 -webkit-user-select: none;
-padding-top: 10px; 
+padding-top: 10px;
 cursor: pointer
 }
 </style>

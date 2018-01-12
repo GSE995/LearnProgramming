@@ -1,20 +1,20 @@
 <template>
-<div class="row h">  
+<div class="row h">
     <div class="col-md-6 col-xs-12">
         <table class="table table-bordered table-dark" id="light">
         <thead>
-            <tr class="head"> 
+            <tr class="head">
                 <th> <span class="next"><i @click="backYear" class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></span> </th>
                 <th scope="col" class="h3" colspan="5">{{year}}</th>
                 <th><span class="next"><i @click="nextYear" class="fa fa-chevron-right fa-lg" aria-hidden="true"></i></span></th>
             </tr>
-            <tr class="head"> 
+            <tr class="head">
                 <th><span class="next"><i @click="backMonth" class="fa fa-chevron-left fa-lg" aria-hidden="true"></i></span></th>
                 <th scope="col" class="h3" colspan="5">{{months[month]}}</th>
                 <th><span class="next"><i @click="nextMonth" class="fa fa-chevron-right fa-lg" aria-hidden="true"></i></span></th>
             </tr>
             <tr>
-                <th id="lable" scope="col" v-for="lable in lables" v-bind:key="lable">{{lable}}</th>  
+                <th id="lable" scope="col" v-for="lable in lables" v-bind:key="lable">{{lable}}</th>
             </tr>
         </thead>
         <tbody>
@@ -68,7 +68,7 @@ export default {
     data: function(){
         return {
             title: "Hello",
-            months: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ], 
+            months: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
             lables: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
             month: new Date().getMonth(),
             year: new Date().getFullYear(),
@@ -104,7 +104,7 @@ export default {
             // странная херь
             if(last){
                 let el1 = document.getElementById(last);
-                
+
                 if(el1){
                     el1.style.backgroundColor = '';
                     }
@@ -112,7 +112,7 @@ export default {
                 let el2 = document.getElementById(current);
 
                 if(el2){
-                    el2.style.backgroundColor = "#32383e";  
+                    el2.style.backgroundColor = "#32383e";
                 }
         },
         selectDay(day){
@@ -133,7 +133,7 @@ export default {
             if(this.month < 0){
                 this.month = this.months.length - 1;
                 this.year--;
-            } 
+            }
         },
         nextYear(){
             this.year++;
@@ -164,7 +164,7 @@ export default {
             if(numberWeek == 0) numberWeek = 7;
             for(var i = 0, j = 1; i <= 7 - numberWeek; i++, j++ ){
                 row[i] = j;
-            }		
+            }
             return row;
         },
         rows(){
@@ -200,8 +200,8 @@ export default {
 
 <style>
 #lable {
-    padding: 0; 
-    padding-bottom: 10px; 
+    padding: 0;
+    padding-bottom: 10px;
     padding-top: 10px
 }
 .head {
@@ -210,7 +210,7 @@ export default {
 
  .cell:hover {
 	background-color: #FB7777;
-    
+
 }
 .cell{
 	cursor: pointer;
@@ -222,7 +222,7 @@ export default {
 }
 
 .row.h{
-	text-align: center; 
+	text-align: center;
 	margin-top: 50px;
 }
 

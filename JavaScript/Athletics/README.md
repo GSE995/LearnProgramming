@@ -1,6 +1,8 @@
-# organizer
+# Athletics
 
-> A Vue.js project
+> A Vue.js project (frontend)
+> node.js, espress, mysql (backend)
+> deloyed on azure https://athleticsapps.azurewebsites.net/
 
 ## Build Setup
 

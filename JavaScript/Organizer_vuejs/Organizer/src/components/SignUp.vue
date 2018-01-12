@@ -28,10 +28,11 @@ export default {
         registerUsers(){
             if(this.user.password !== this.user.confirmpassword){
                 this.erro = "Пароли не совпадают";
-            } 
+            }
             else {
                 firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
-                .then( ()=> {
+                .then( (res)=> {
+                  console.log(res.uid);
                     this.succes = true;
                     this.user = {email: '', password: '', confirmpassword: ''};
                     this.$emit("registerSuccess", false);
