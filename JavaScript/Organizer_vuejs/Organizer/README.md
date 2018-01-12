@@ -1,6 +1,7 @@
 # organizer
 
 > A Vue.js project
+> https://organizer-89776.firebaseapp.com/
 
 ## View
 
