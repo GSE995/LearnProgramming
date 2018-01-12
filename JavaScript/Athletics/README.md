@@ -2,8 +2,9 @@
 ```
 A Vue.js project (frontend)
 node.js, espress, mysql (backend)
-deloyed on azure https://athleticsapps.azurewebsites.net/
+deloyed on azure
 ```
+>https://athleticsapps.azurewebsites.net/
 
 ## Build Setup
 
