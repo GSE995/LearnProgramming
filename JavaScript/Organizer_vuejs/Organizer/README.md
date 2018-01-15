@@ -1,6 +1,6 @@
 # organizer
 
-> A Vue.js project
+A Vue.js project
 
 ##
 Проект размещен на google.firebase 
