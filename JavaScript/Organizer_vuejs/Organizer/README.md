@@ -1,6 +1,6 @@
 # organizer
 
-A Vue.js project
+Проект создан с помощью фреймворка Vue.js 
 
 ##
 Проект размещен на google.firebase 
