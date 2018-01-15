@@ -1,8 +1,10 @@
 # organizer
 
 > A Vue.js project
+```
+Проект размещен на google.firebase 
 > https://organizer-89776.firebaseapp.com/
-
+```
 ## View
 
 ![Screenshot](Organizer.png)
