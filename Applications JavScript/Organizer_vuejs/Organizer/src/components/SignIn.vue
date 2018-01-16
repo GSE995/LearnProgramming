@@ -1,8 +1,8 @@
 <template>
         <div class="card card-container">
             <form class="form-signin" @submit.prevent="enterUser">
-                <input type="email" class="form-control" placeholder="Email address" required autofocus v-model="user.email" required>
-                <input type="password"  class="form-control" placeholder="Password" required v-model="user.password" required >
+                <input type="email" class="form-control" placeholder="Email address" required autofocus v-model="user.email">
+                <input type="password"  class="form-control" placeholder="Password" required v-model="user.password">
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
                 <div  v-if="check" class="alert alert-danger" role="alert"> {{erro}} </div>
             </form>
@@ -23,7 +23,7 @@ export default {
     },
     methods:{
         enterUser(){
- 
+
             firebase.auth().signInWithEmailAndPassword(this.user.email, this.user.password)
             .then(response => {
                 const sett = {
@@ -32,7 +32,7 @@ export default {
                      mainPage: true,
                      complete: true
                 }
-                this.$emit("addUser", sett); 
+                this.$emit("addUser", sett);
             })
             .catch(erro => {
                 this.check = true;

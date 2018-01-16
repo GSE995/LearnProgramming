@@ -14,15 +14,18 @@
     </div>
     <div class="row">
     <div class="col-12" style="texr-align: left; font-weight: normal;">
-            <div class="list-group-item itm" v-for="(it, index) in notes" v-bind:key="index" >
-             <span>  {{it}} </span>
-               <button class="btn btn-outline-danger" id="deleted" v-on:click="removeItem(index)">x</button>
-               <button class="btn btn-outline-danger" id="deleted" v-on:click="changeItem(index)">-</button>
+          <div class="list-group-item itm" v-for="(it, index) in notes" v-bind:key="index" >
+              <span > {{it}} </span>
+              <div class="deleted" v-if="!show">
+                <button class="btn" v-on:click="getItem(index)"><i class="fa fa-pencil" aria-hidden="true" ></i></button>
+              <button class="btn" v-on:click="removeItem(index)"><i class="fa fa-times" aria-hidden="false"></i></button>
+              </div>
             </div>
-            <!-- <input wrap="soft" class="form-control" v-if="show" v-model.lazy="add" v-on:keyup.enter="addItem"/> -->
-            <textarea wrap="soft" class="form-control" v-model="add" v-on:keyup.enter="addItem"></textarea>
-            <!-- <button class="btn" style="margin-top: 5px" @click="show = !show">+</button> -->
-            <button class="btn" style="margin-top: 5px" @click="addItem">+</button>
+            <input class="form-control" v-if="!show" v-model="add" v-on:keyup.enter.prevent="addItem" placeholder="Write item..." style="margin-top: 15px; padding: 20px">
+            <input v-focus class="form-control" id="ch" v-if="show" v-model="changeText" v-on:keyup.enter.prevent="changeItem" style="margin-top: 15px; padding: 20px">
+             <div  v-if="erroText" class="alert alert-danger" role="alert"> {{erroText}}</div>
+            <button class="btn" style="margin-top: 5px" v-if="show" @click="changeItem">Change</button>
+            <button class="btn" style="margin-top: 5px" v-if="!show" @click="addItem">Add</button>
         </div>
     </div>
   </div>
@@ -34,14 +37,27 @@ export default {
     data: function(){
         return {
             add: '',
+            erroText: '',
+            changeText: '',
+            selectItem: -1,
+            dataIndex: -1,
             show: false,
             userData: [],
             arr: []
         }
     },
+    directives: {
+      focus: {
+        inserted: function (el) {
+          el.focus()
+        }
+      }
+    },
     methods: {
         addItem(){
-            if(this.notes.length){
+            if(this.add){
+              console.log(this.add.length);
+              if(this.notes.length){
                 for(let i = 0; i < this.userData.length; i++){
                     if(this.userData[i]['date'] == `${this.day}.${this.month}.${this.year}`){
                         this.userData[i]['notes'].push(this.add);
@@ -57,12 +73,15 @@ export default {
                 }
                 this.userData.push(obj);
             }
-
-            firebase.database().ref('users/' + this.uid).set({
-                items: this.userData
-            });
+            this.updateItems();
 
             this.add = '';
+
+            }else{
+                this.erroText = 'Заметка пуста..'
+                setTimeout(()=>{this.erroText = ''}, 2000);
+            }
+
         },
         removeItem(index){
             for(let i = 0; i < this.userData.length; i++){
@@ -75,25 +94,30 @@ export default {
                 }
             }
 
-            firebase.database().ref('users/' + this.uid).set({
-                items: this.userData
-            });
+            this.updateItems();
         },
-        changeItem(index){
-          if(!this.show){
-              this.show = true;
-          }
-
+        getItem(index){
           for(let i = 0; i < this.userData.length; i++){
                 if(this.userData[i]['date'] == `${this.day}.${this.month}.${this.year}`){
-                    if(this.userData[i]['notes'].length == 1){
-                        this.add = this.userData[i].notes[0];
-                        this.userData.splice(i, 1);
-                    }else{
-                        this.add = this.userData[i]['notes'].splice(index, 1);
-                        this.userData[i]['notes'].splice(index, 1);
-                    }
+                    this.changeText = this.userData[i]['notes'][index];
+                    this.add =  this.changeText;
+                    this.selectItem = index;
+                    this.dataIndex = i;
+                    this.show = true;
+                    this.userData[i]['notes'][index] = '';
                 }
+          }
+        },
+        changeItem(){
+            if(this.changeText){
+              this.add = "";
+              this.userData[this.dataIndex]['notes'][this.selectItem] = this.changeText;
+              this.show = false;
+              this.updateItems();
+            }else{
+              this.erroText = 'Зачем изменять заметку на пустое значение?'
+              this.changeText = this.add;
+                setTimeout(()=>{this.erroText = ''}, 2000);
             }
         },
         nextDay(){
@@ -106,6 +130,11 @@ export default {
             this.$emit("backDay", --day);
             this.show = false;
         },
+        updateItems(){
+            firebase.database().ref('users/' + this.uid).set({
+                items: this.userData
+            });
+        }
     },
     computed: {
         notes(){
@@ -119,8 +148,7 @@ export default {
                     }
                 }
             }
-
-             let cellcollect = document.getElementsByClassName('cell');
+            let cellcollect = document.getElementsByClassName('cell');
 
             for(let i = 0; i < cellcollect.length; i++){
                 cellcollect[i].style.color = '';
@@ -136,7 +164,6 @@ export default {
         }
     },
     created(){
-        this.userData = [];
         const takeItem = firebase.database().ref('users/' + this.uid + '/items');
         takeItem.on('value', (data)=>{
             if(data.val()){
@@ -150,18 +177,11 @@ export default {
 
 
 <style>
-#deleted{
-   visibility: hidden;
+.deleted{
+   display: none
 }
-#change{
-   visibility: hidden;
-}
-.itm:hover #change{
-    visibility: visible;
-}
-
-.itm:hover #deleted{
-    visibility: visible;
+.itm:hover .deleted{
+    display: block;
 }
 .list-group-item{
     text-align: left;

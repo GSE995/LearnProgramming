@@ -78,39 +78,33 @@ export default {
         nextDay(day){
             let date = new Date(this.year, this.month + 1, 0).getDate();
             let last = this.day;
-
                 if(day > date){
                     this.nextMonth();
                     this.day = 1;
                 }else{
                     this.day = day;
                 }
-
             this.changeCellColor(last, this.day);
             },
         backDay(day){
             let last = this.day;
-
                 if(day < 1){
                     this.backMonth();
                     this.day = new Date(this.year, this.month + 1, 0).getDate();
                 }else{
                     this.day = day;
                 }
-
             this.changeCellColor(last, this.day);
             },
         changeCellColor(last, current){
-            // странная херь
+
             if(last){
                 let el1 = document.getElementById(last);
-
                 if(el1){
                     el1.style.backgroundColor = '';
                     }
             }
                 let el2 = document.getElementById(current);
-
                 if(el2){
                     el2.style.backgroundColor = "#32383e";
                 }
@@ -194,6 +188,15 @@ export default {
             }
             return row;
         }
+    },
+    created(){
+
+      setTimeout(()=>{
+        let day = new Date().getDate();
+        let el = document.getElementById(day);
+        el.style.backgroundColor = "#32383e";
+      }), 5000
+
     }
 }
 </script>
