@@ -6,6 +6,9 @@ deloyed on azure
 ```
 >https://athleticsapps.azurewebsites.net/
 
+## View
+![Screenshot](athleticsEvent.png)
+
 ![Screenshot](athleticsEvent.png)
 
 ## Build Setup
