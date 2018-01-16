@@ -3,7 +3,6 @@
 Веб-приложение создано на фреймворке Vue.js. В серверной части испоьзуется node.js, espress, mysql. 
 Тестовая версия развернута на microsoft azure: https://athleticsapps.azurewebsites.net/
 
-
 ## View
 ![Screenshot](upcomingEvent.png)
 
