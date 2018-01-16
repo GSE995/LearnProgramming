@@ -9,7 +9,7 @@ deloyed on azure
 ## View
 ![Screenshot](athleticsEvent.png)
 
-![Screenshot](athleticsEvent.png)
+![Screenshot](mobEvent.PNG)
 
 ## Build Setup
 
