@@ -6,6 +6,8 @@ deloyed on azure
 ```
 >https://athleticsapps.azurewebsites.net/
 
+![Screenshot](athleticsEvent.png)
+
 ## Build Setup
 
 ``` bash
