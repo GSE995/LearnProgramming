@@ -89,7 +89,6 @@
               <input type="text"  class="form-control" required="required" :value="email"  minlength="2" maxlength="30">
           </div>
         </fieldset>
-
       </form>
       <button class="btn btn-warning" v-on:submit.prevent.stop @click="sendEvent">Create</button>
       <div v-if="alert_erro" class="alert alert-danger" role="alert">Не все поля заполнены: {{erro_msg}}</div>
@@ -108,10 +107,7 @@ export default {
       default_distances: [42.2, 21.1, 10, 5],
       poster: ''
     }
-  },
-  methods(){
-
-  },
+  }
   created(){
     // стянуть всю инфу о мероприятии
     fetch(this.$store.state.url + '/api/event/all/' + this.$route.params.id)
@@ -131,8 +127,6 @@ export default {
 </script>
 
 <style>
-
-
 .file-upload {
   position: relative;
   height: 32px;

@@ -13,8 +13,8 @@
             </div>
             <div class="collapse navbar-collapse " id="responsive-menu">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown header"> <router-link :to="'/reiting'"> <a style="color: #383838">Рейтинг результатов</a> </router-link></li>
-                    <li class="dropdown header"><a style="color: #383838" class="dropdown-toggle" data-toggle="dropdown" href="">Календарь соревнований<b class="caret">  </b>
+                    <li class="dropdown header"> <router-link :to="'/reiting'"> <a style="color: #383838"> <b>Рейтинг результатов</b></a> </router-link></li>
+                    <li class="dropdown header"><a style="color: #383838; size: 20px" class="dropdown-toggle" data-toggle="dropdown" href=""> <b> Календарь соревнований</b><b class="caret">  </b>
                         </a>
                         <ul  class="dropdown-menu">
                             <li><router-link :to="'/events/runs/page/' + 1">Беговые</router-link></li>
@@ -78,20 +78,18 @@ export default {
             }
         }
     }
-
 }
 </script>
 
 <style>
+#avatar > a{
+    padding-top: 0;
+    padding-bottom: 0
+}
     #Head {
   margin-bottom: 0; background-color: #26a69a;
   border-color: #26a69a;
   border-radius: 0;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
-#avatar > a{
-    padding-top: 0;
-    padding-bottom: 0
-}
-
 </style>

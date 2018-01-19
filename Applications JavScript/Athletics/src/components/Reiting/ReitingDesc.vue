@@ -11,7 +11,6 @@
             <th class="hidden-sm hidden-xs"><input type="text" class="form-control" placeholder="Имя" disabled></th>
             <th><input type="text" class="form-control" placeholder="Пол" disabled></th>
             <th><input type="text" class="form-control" placeholder="Время" disabled></th>
-            <th><input type="text" class="form-control" placeholder="Темп" disabled></th>
             <th><input type="text" class="form-control" placeholder="Мероприятие" disabled></th>
             <th><input type="text" class="form-control" placeholder="Страна" disabled></th>
           </tr>
@@ -22,7 +21,6 @@
             <td v-if="result.user_id"><router-link :to="'/profile/' + result.user_id">{{result.u_name}} {{result.u_surename}}</router-link></td>
             <td v-if="!result.user_id">{{result.u_name}} {{result.u_surename}}</td>
             <td>{{result.gender}}</td>
-            <td>{{result.time}}</td>
             <td>{{result.time}}</td>
             <td><router-link :to="{name: 'Event', params: {id: result.event_id}}"> {{result.name}} </router-link></td>
             <td>{{result.country}}</td>
@@ -62,8 +60,6 @@ export default {
   },
   methods:{
     getTemp(){
-
-
     },
     getEventName(id){
       let name;
@@ -72,12 +68,10 @@ export default {
           name = this.events[i].name;
         }
       }
-
       return name;
     }
   },
   created(){
-
     fetch(this.$store.state.url + '/api/results')
           .then((res)=>{
             res.json().then(data=>{
@@ -86,10 +80,11 @@ export default {
               this.load = true;
             })
           })
-          .catch(err=>{
-            console.log(err);
+          .catch(erro=>{
+            console.log(erro);
+            this.load = true;
+            this.$router.push({name: 'Erro', params: {status: 1}});
           })
-
   }
 }
 </script>

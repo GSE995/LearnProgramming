@@ -30,10 +30,8 @@ export default {
     props: ['result'],
     data(){
         return {
-
         }
     }
-
 }
 </script>
 

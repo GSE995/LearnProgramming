@@ -63,14 +63,11 @@ export default {
                 }
             ],
             results: [],
-            filterresults: [
-
-            ]
+            filterresults: []
         }
     },
     methods:{
         selectDistance(distance){
-            // magic select distance
         },
         filterByDistance(dist){
             for(let i = 0; i < this.results.length; i++){
@@ -81,8 +78,6 @@ export default {
         }
     },
     created(){
-        // ищем все результаты по id данного мероприятия
-
         if(this.$route.params.id){
           fetch(this.$store.state.url + '/api/results/event/' + this.$route.params.id)
           .then((res)=>{
@@ -95,10 +90,7 @@ export default {
           .catch(err=>{
             console.log(err);
           })
-        }else {
-
         }
-
     }
 
 }

@@ -14,17 +14,17 @@
               <div class="carousel-caption">
                 <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 search-result1">
                   <div class="input-group">
-                    <input type="text" class="form-control event" placeholder="Поиск мероприятий (введите название)" style=" border-radius: 0">
+                    <input type="text" class="form-control event" placeholder="Поиск мероприятий (введите название)" style=" border-radius: 0" v-model="searchEvent" @keyup.enter="getSearchEventPage">
                     <span class="input-group-btn" >
-                      <button class="btn btn-default event" type="button">Go!</button>
+                      <button class="btn btn-danger event" type="button" @click="getSearchEventPage" >Go!</button>
                     </span>
                   </div>
                 </div>
                 <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 search-result2">
                   <div class="input-group">
-                    <input type="text" class="form-control event" placeholder="Поиск результатов (Введите фамилию и имя" style=" border-radius: 0">
+                    <input type="text" class="form-control event" placeholder="Поиск результатов (Введите фамилию и имя)" style=" border-radius: 0" v-model="searchResult" @keyup.enter="getSearchResultPage">
                     <span class="input-group-btn" >
-                      <button class="btn btn-default event" type="button">Go!</button>
+                      <button class="btn btn-warning event" type="button" @click.prevent="getSearchResultPage">Go!</button>
                     </span>
                   </div>
                 </div>
@@ -37,7 +37,7 @@
         <div class="row">
             <h2>Предстоящие мероприятия</h2>
             <EventCard v-for="(event, index) in events" :key="index" :event="event" :distances="setDistances(event.id)"></EventCard>
-             <router-link :to="'/create'">
+            <router-link :to="'/create'">
             <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3" id="headevenybox">
               <div class="thumbnail" id="eventbox">
                 <h4 style="text-align:center; text-decoration: none;">Создать свое мероприятие</h4>
@@ -71,7 +71,9 @@ export default {
             events:[],
             distances: [],
             users: [],
-            load: false
+            load: false,
+            searchEvent: '',
+            searchResult: ''
         }
     },
     methods:{
@@ -83,8 +85,21 @@ export default {
             }
           }
         return arr;
+      },
+      getSearchEventPage(){
+        if(this.searchEvent){
+          this.$router.push({name: 'SearchEvent', params: {name: this.searchEvent}});
+        }else{
+          alert('not');
+        }
+      },
+      getSearchResultPage(){
+        if(this.searchResult){
+            this.$router.push({name: 'SearchResult', params: {name: this.searchResult}});
+        }else{
+          alert('not');
+        }
       }
-
     },
     created(){
       fetch(this.$store.state.url + '/api/upcoming')
@@ -94,8 +109,12 @@ export default {
               this.load = true;
 		      })
 		      })
-          .catch(()=>{})
+          .catch(erro=>{
+        console.log(erro);
+        this.load = true;
+         this.$router.push({name: 'Erro', params: {status: 1}});
 
+      })
       fetch(this.$store.state.url + '/api/distances')
           .then((res)=>{
             res.json().then(data=>{
@@ -112,12 +131,10 @@ export default {
           this.users = data;
         })
       })
+      .catch(erro=>{
+        console.log(erro);
 
-      fetch(this.$store.state.url + '/cookie')
-      .then((res)=>{
-        cinsole.log(res);
       })
-
     }
 }
 </script>

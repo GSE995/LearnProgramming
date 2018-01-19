@@ -11,6 +11,9 @@ import RequestTable from '../components/AdminTool/RequestTable.vue'
 import UsersTable from '../components/AdminTool/UsersTable.vue'
 import ReitingDesc from '../components/Reiting/ReitingDesc.vue'
 import CreateEvent from '../components/Event/CreateEvent.vue'
+import SearchEvent from '../components/Search/SearchEvent.vue'
+import SearchResult from '../components/Search/SearchResult.vue'
+import Erro from '../components/Erro/Erro.vue'
 
 
 Vue.use(Router)
@@ -69,6 +72,26 @@ export default new Router({
       path: '/create',
       name: 'CreateEvent',
       component: CreateEvent
+    },
+    {
+      path: '/search_event/:name',
+      name: 'SearchEvent',
+      component: SearchEvent
+    },
+    {
+      path: '/search_results/:name',
+      name: 'SearchResult',
+      component: SearchResult
+    },
+    {
+      path: '/ERRO',
+      name: 'Erro',
+      component: Erro
+    },
+    {
+      path: '*',
+      name: '404',
+      component: Erro
     }
 
   ]

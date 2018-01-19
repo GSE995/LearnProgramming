@@ -156,31 +156,31 @@ export default {
               res.json()
                 .then(data =>{
                   this.event.poster = data.imagename;
+                  this.checkEvent();
                 })
          })
          .catch(err=>{
            console.log(err);
          })
         }else {
+          this.erro_msg = 'не выбрано изображение';
           console.log('img is empty');
         }
     },
     sendEvent(){
       this.erro_msg = '';
 
-      this.sendImage();
-
-      setTimeout(this.checkEvent, 1000);
-
-    },
-    checkEvent(){
-        for(let key in this.event){
+      for(let key in this.event){
             if(!this.event[key]){
               this.alert_erro = true;
               this.erro_msg += ' ' + key + ',';
             }
       }
-
+      if(!this.erro_msg){
+         this.sendImage();
+      }
+    },
+    checkEvent(){
       if(!this.alert_erro && this.event.poster){
         let fetchdata = {
              method: 'post',
@@ -230,8 +230,6 @@ export default {
 </script>
 
 <style>
-
-
 .file-upload {
   position: relative;
   height: 32px;

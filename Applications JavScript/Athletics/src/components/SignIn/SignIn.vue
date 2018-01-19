@@ -39,12 +39,10 @@ export default {
       uid: ''
     }
   }
-
 }
 </script>
 
 <style>
-
 .dropdown-menu.pop{
     background-color:rgba(255,255,255,.8);
 }

@@ -13,7 +13,7 @@
           <tr v-for="(user, index) in users" :key="index">
             <td>{{index + 1}}</td>
             <td> <router-link :to="'/profile/' + user.id"> {{user.name}} {{user.surename}}</router-link></td>
-            <td>{{user.gender}}</td>
+            <td>{{user.gender[0]}}</td>
             <td>{{validDate(user.register_date)}}</td>
             <button class="btn btn-success">Ред</button>
           </tr>
@@ -57,17 +57,14 @@ export default {
       }
   },
   created(){
-
     fetch(this.$store.state.url + '/api/users')
       .then((res)=>{
         res.json().then(data=>{
           console.log(data);
-          this.users = data;
+          this.users = data.reverse();
         })
       })
-
   }
-
 }
 </script>
 

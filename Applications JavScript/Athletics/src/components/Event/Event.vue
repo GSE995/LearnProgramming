@@ -24,7 +24,7 @@
                 <p><strong>Стоимость: </strong> от 800 до 1000 <i class="fa fa-rub" aria-hidden="true"></i></p>
                 <button class="btn btn-warning btn-sm"> Участвовать </button>
                 <button class="btn btn-warning btn-sm"> Добавить в планы </button>
-                <p style="padding-top: 15px">Рейтинг на основе участников
+                <p  style="padding-top: 15px">Рейтинг мероприятия
                     <button class="btn btn-success" style="border-radius: 20px">
                         <strong>4</strong>
                         <i class="fa fa-star"></i>
@@ -35,16 +35,17 @@
         </div>
     </div>
 
-    <div class="container" style="padding-top: 40px">
+    <div class="container hidden-xs" style="padding-top: 40px">
         <div class="row">
             <ul class="nav nav-tabs nav-justified">
-                <li class="active nav-item"><a href="#tab-1" data-toggle="tab">Информация</a></li>
+                <li class="active nav-item"><a href="#tab-1" data-toggle="tab">Информация</a>
+                </li>
                 <li v-if="status_result" ><a href="#tab-2" data-toggle="tab">Результаты</a></li>
                 <li><a href="#tab-3" data-toggle="tab">Дистанции</a></li>
                 <li><a href="#tab-4" data-toggle="tab">Контакты</a></li>
                 <li><a href="#tab-5" data-toggle="tab">Участники</a></li>
-                <li><a href="#tab-6" data-toggle="tab">Отзывы</a></li>
-                <li><a href="#tab-7" data-toggle="tab">Отчеты</a></li>
+                <li v-if="status_result"><a href="#tab-6" data-toggle="tab">Отзывы</a></li>
+                <li v-if="status_result"><a href="#tab-7" data-toggle="tab">Отчеты</a></li>
             </ul>
         </div>
 
@@ -60,7 +61,6 @@
             <div  class="tab-pane fade" id="tab-3">
                 <DistancesCard :distances="event.distances"></DistancesCard>
             </div >
-
             <div class="tab-pane fade" id="tab-4">
                 <section id="map">
                     <div class="container">
@@ -87,19 +87,112 @@
                     </div>
                 </section>
             </div>
-
             <div class="tab-pane fade" id="tab-5">
             </div>
-
             <div class="tab-pane fade" id="tab-6">
-
             </div>
-
             <div class="tab-pane fade" id="tab-7">
             </div>
-
         </div>
     </div>
+      <div class="container visible-xs">
+          <div id="accordion" class="panel-group"  >
+            <div class="panel panel-default">
+              <a href="#collapse-1" data-parent="#accordion" data-toggle="collapse" ><div class="heading" >
+              <h4 style="text-align: center"> Информация</h4>
+              </div></a>
+              <div id="collapse-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h4 style="padding-bottom: 80px; padding-top: 30px">{{event.description}}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default" v-if="status_result">
+              <a href="#collapse-2" data-parent="#accordion" data-toggle="collapse" ><div class="heading" >
+              <h4 style="text-align: center"> Результаты</h4>
+              </div></a>
+              <div id="collapse-2" class="panel-collapse collapse">
+                <div class="panel-body">
+                   <ResultsTable v-if="status_result" :eventid="event.id" :distance="event.distances"></ResultsTable>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <a href="#collapse-3" data-parent="#accordion" data-toggle="collapse" ><div class="heading" >
+              <h4 style="text-align: center"> Дистанции</h4>
+              </div></a>
+              <div id="collapse-3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <DistancesCard :distances="event.distances"></DistancesCard>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <a href="#collapse-4" data-parent="#accordion" data-toggle="collapse" ><div class="heading" >
+              <h4 style="text-align: center"> Контакты</h4>
+              </div></a>
+              <div id="collapse-4" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <section id="map">
+                      <div class="container">
+                          <br>
+                          <div class="row">
+                              <div class="col-md-7 col-lg-7 col-sm-7">
+                                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10690.659841203127!2d37.54922099120497!3d55.71620283131831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54b86290372b3%3A0x99a79ca4effb81fe!2z0JvRg9C20L3QuNC60LgsINC80LDQu9Cw0Y8g0YHQv9C-0YDRgtC40LLQvdCw0Y8g0LDRgNC10L3QsA!5e0!3m2!1sru!2sru!4v1495595432474" width="100%" height="400px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                              </div>
+                              <div class="col-lg-5 col-sm-5 col.md-5">
+                                  <div class="form-group has-feedback">
+                                      <label for="name" class="control-label">Организатор</label>
+                                      <span class="form-control">{{event.organiser}}</span>
+                                  </div>
+                                  <div class="form-group has-feedback">
+                                      <label for="name" class="control-label">Официальный сайт</label>
+                                      <span class="form-control"><a :href="event.oficial_site">{{event.oficial_site}}</a></span>
+                                  </div>
+                                  <div class="form-group has-feedback">
+                                      <label for="name" class="control-label">Почта</label>
+                                      <span class="form-control">{{event.email}}</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </section>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <a href="#collapse-5" data-parent="#accordion" data-toggle="collapse" ><div class="heading" >
+              <h4 style="text-align: center"> Участники</h4>
+              </div></a>
+              <div id="collapse-5" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h4 style="padding-bottom: 80px; padding-top: 30px">{{event.description}}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default" v-if="status_result">
+              <a href="#collapse-5" data-parent="#accordion" data-toggle="collapse" ><div class="heading" >
+              <h4 style="text-align: center"> Отзывы</h4>
+              </div></a>
+              <div id="collapse-5" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h4 style="padding-bottom: 80px; padding-top: 30px">{{event.description}}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default" v-if="status_result">
+              <a href="#collapse-6" data-parent="#accordion" data-toggle="collapse" ><div class="heading" >
+              <h4 style="text-align: center"> Отчеты</h4>
+              </div></a>
+              <div id="collapse-6" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h4 style="padding-bottom: 80px; padding-top: 30px">{{event.description}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
 </div>
 </template>
 
@@ -149,11 +242,12 @@ export default {
               this.load = true;
             })
           })
-          .catch(err=>{
-            console.log(err);
-          })
-      }
-
+          .catch(erro=>{
+        console.log(erro);
+        this.load = true;
+         this.$router.push({name: 'Erro', params: {status: 1}});
+      })
+    }
 }
 </script>
 
@@ -178,6 +272,4 @@ export default {
       padding-top: 0;
       margin-bottom: 20px;
     }
-
-
 </style>

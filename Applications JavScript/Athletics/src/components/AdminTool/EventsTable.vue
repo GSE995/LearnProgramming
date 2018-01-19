@@ -5,10 +5,9 @@
         <thead>
           <tr class="filters">
             <th><input type="text" class="form-control" placeholder="№"></th>
-            <th class="hidden-sm hidden-xs"><input type="text" class="form-control" placeholder="Название" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Название" disabled></th>
             <th><input type="text" class="form-control" placeholder="Страна" disabled></th>
             <th><input type="text" class="form-control" placeholder="Город" disabled></th>
-            <th><input type="text" class="form-control" placeholder="Место" disabled></th>
             <th><input type="text" class="form-control" placeholder="Старт" disabled></th>
             <th><input type="text" class="form-control" placeholder="Дата создания" disabled></th>
             <th><input type="text" class="form-control" placeholder="Создатель" disabled></th>
@@ -20,10 +19,9 @@
             <td> <router-link :to="{name: 'Event', params: {id: event.id}}"> {{event.name}} </router-link> </td>
             <td>{{event.country}}</td>
             <td>{{event.city}}</td>
-            <td>{{event.area}}</td>
             <td>{{validDate(event.start_date)}}</td>
             <td>{{validDate(event.create_date)}}</td>
-            <td>{{getCreator(event.id)}}</td>
+            <td><router-link :to="'/profile/' + event.creator_id">{{getCreator(event.creator_id)}}</router-link></td>
             <button class="btn btn-success">Ред</button>
           </tr>
         </tbody>
@@ -50,12 +48,19 @@ export default {
     return {
       events: [],
       filterevets: [],
-      load: false
+      users: []
     }
   },
   methods:{
     getCreator(id){
-      return 1;
+      let fullname = "";
+
+      for(let i = 0; i < this.users.length; i++){
+        if(this.users[i].id == id){
+          fullname = this.users[i].name + " " + this.users[i].surename;
+        }
+      }
+      return fullname;
     },
     validDate(date){
         let options = {
@@ -73,12 +78,22 @@ export default {
     fetch(this.$store.state.url + '/api/events')
 		      .then((res)=>{
 		        res.json().then(data =>{
+              this.filterevets = data.reverse();
               this.events = data;
-              this.filterevets = data;
-              this.load = true;
 		        })
 		      })
-		.catch(()=>{})
+    .catch(erro=>{
+        console.log(erro);
+      })
+     fetch(this.$store.state.url + '/api/users')
+      .then((res)=>{
+        res.json().then(data=>{
+          this.users = data;
+        })
+      })
+      .catch(erro=>{
+        console.log(erro);
+      })
   }
 }
 </script>

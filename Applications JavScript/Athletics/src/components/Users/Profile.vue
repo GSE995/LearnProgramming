@@ -135,18 +135,17 @@ export default {
                 this.load = true;
 		        	})
 		        })
-		        .catch(()=>{
-		        	alert('hi');
-            })
+		        .catch(erro=>{
+              console.log(erro);
+              this.load = true;
+              this.$router.push({name: 'Erro', params: {status: 1}});
 
-         // если данные не передались через компонент то достать их из базы
-        // запрашивать данные о пользователе, его планах, результатах, фотографиях
+            })
     }
 }
 </script>
 
 <style>
-
 .card.hovercard{
     background-color: #D8DEE2;
     -webkit-box-shadow:0 2px 6px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.1) inset;
