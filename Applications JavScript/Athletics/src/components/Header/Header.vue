@@ -1,4 +1,5 @@
 <template>
+<div class="container">
     <div class="navbar navbar-default navbar-fixed-top" id="Head">
         <div class="container">
             <div class="navbar-header">
@@ -13,7 +14,7 @@
             </div>
             <div class="collapse navbar-collapse " id="responsive-menu">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown header"> <router-link :to="'/reiting'"> <a style="color: #383838"> <b>Рейтинг результатов</b></a> </router-link></li>
+                    <li class="dropdown header"> <router-link :to="'/reiting'"> <a style="color: #383838"> <b >Рейтинг результатов</b></a> </router-link></li>
                     <li class="dropdown header"><a style="color: #383838; size: 20px" class="dropdown-toggle" data-toggle="dropdown" href=""> <b> Календарь соревнований</b><b class="caret">  </b>
                         </a>
                         <ul  class="dropdown-menu">
@@ -60,6 +61,7 @@
             </div>
         </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -86,7 +88,7 @@ export default {
     padding-top: 0;
     padding-bottom: 0
 }
-    #Head {
+#Head {
   margin-bottom: 0; background-color: #26a69a;
   border-color: #26a69a;
   border-radius: 0;

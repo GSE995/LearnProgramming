@@ -39,7 +39,7 @@
     </div>
     <div v-if="!find">
        <h2>По вашему запросу ничего не найдено</h2>
-        <p><router-link :to="'/'">на главную</router-link></p>
+        <h3><router-link :to="'/'">на главную</router-link></h3>
     </div>
   </div>
 </template>

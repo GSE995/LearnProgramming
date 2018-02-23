@@ -4,11 +4,11 @@
     <div class="col-md-10 col-md-offset-1">
       <div class="alert alert-success" role="alert"><h2>Event create success!!!</h2></div>
       <router-link :to="{name: 'Event', params: {id: event_id}}"> <button class="btn btn-default">Перейти на страницу мероприятия</button> </router-link>
-      <router-link :to="{name: 'Event', params: {id: event_id}}"> <button class="btn btn-default">Редактировать</button> </router-link>
+      <router-link :to="{name: 'ChangeEvent', params: {id: eventId}}"> <button class="btn btn-default">Редактировать</button> </router-link>
     </div>
   </div>
   <div class="row" v-if="!success">
-     <h2>Create events</h2>
+     <h2>Create event</h2>
     <div class="col-md-10 col-md-offset-1">
       <form role="form" action="#">
         <fieldset>
@@ -76,23 +76,25 @@
           <h2>Contacts info</h2>
           <div class="form-group has-feedback col-md-6 col-sm-6">
             <label for="name" class="control-label">Organizer</label>
-            <input type="text"  class="form-control" required="required" value="" placeholder="ТопАтлет" minlength="2" maxlength="30">
+            <input type="text"  class="form-control" required="required" value="" placeholder="ТопАтлет" minlength="2" maxlength="30" v-model="event.organizer">
           </div>
 
           <div class="form-group has-feedback col-md-6 col-sm-6">
             <label for="name" class="control-label">Oficial site</label>
-            <input type="text"  class="form-control" required="required" value="" minlength="2" maxlength="30">
+            <input type="text"  class="form-control" required="required" value="" minlength="2" maxlength="30" v-model="event.oficial_site">
           </div>
 
           <div class="form-group has-feedback col-md-6 col-sm-6">
               <label for="name" class="control-label">Email</label>
-              <input type="text"  class="form-control" required="required" value=""  minlength="2" maxlength="30">
+              <input type="text"  class="form-control" required="required" value=""  minlength="2" maxlength="30" v-model="event.email">
           </div>
         </fieldset>
 
       </form>
-      <button class="btn btn-warning" v-on:submit.prevent.stop @click="sendEvent">Create</button>
+      <button v-if="!load" class="btn btn-warning" v-on:submit.prevent.stop @click="sendEvent">Create</button>
+      <button v-if="load" class="btn btn-warning m-progress">Create</button>
       <div v-if="alert_erro" class="alert alert-danger" role="alert">Не все поля заполнены: {{erro_msg}}</div>
+
     </div>
   </div>
 </div>
@@ -103,6 +105,7 @@
 export default {
   data(){
     return {
+      load: false,
       event: {
         name: '',
         description: '',
@@ -110,7 +113,10 @@ export default {
         country: '',
         start_date: '',
         end_date: '',
-        distances: []
+        distances: [],
+        organizer: '',
+        oficial_site: '',
+        email: '',
       },
       oficial_site: '',
       distance: '',
@@ -168,6 +174,7 @@ export default {
         }
     },
     sendEvent(){
+      this.load = true;
       this.erro_msg = '';
 
       for(let key in this.event){
@@ -176,8 +183,11 @@ export default {
               this.erro_msg += ' ' + key + ',';
             }
       }
+
       if(!this.erro_msg){
          this.sendImage();
+      }else{
+        this.load = false;
       }
     },
     checkEvent(){
@@ -288,6 +298,124 @@ export default {
   z-index: 99;
   width: 100%;
   opacity: 0;
+}
+
+@-webkit-keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@-moz-keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@-o-keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+@keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.m-progress {
+    position: relative;
+    opacity: .8;
+    color: transparent !important;
+    text-shadow: none !important;
+}
+
+.m-progress:hover,
+.m-progress:active,
+.m-progress:focus {
+    cursor: default;
+    color: transparent;
+    outline: none !important;
+    box-shadow: none;
+}
+
+.m-progress:before {
+    content: '';
+
+    display: inline-block;
+
+    position: absolute;
+    background: transparent;
+    border: 1px solid #fff;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+
+    box-sizing: border-box;
+
+    top: 50%;
+    left: 50%;
+    margin-top: -12px;
+    margin-left: -12px;
+
+    width: 24px;
+    height: 24px;
+
+    -webkit-animation: ld 1s ease-in-out infinite;
+    -moz-animation:    ld 1s ease-in-out infinite;
+    -o-animation:      ld 1s ease-in-out infinite;
+    animation:         ld 1s ease-in-out infinite;
+}
+
+.btn-default.m-progress:before {
+    border-left-color: #333333;
+    border-right-color: #333333;
+}
+
+.btn-lg.m-progress:before {
+    margin-top: -16px;
+    margin-left: -16px;
+
+    width: 32px;
+    height: 32px;
+}
+
+.btn-sm.m-progress:before {
+    margin-top: -9px;
+    margin-left: -9px;
+
+    width: 18px;
+    height: 18px;
+}
+
+.btn-xs.m-progress:before {
+    margin-top: -7px;
+    margin-left: -7px;
+
+    width: 14px;
+    height: 14px;
+}
+
+/*  */
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+	margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
 }
 
 </style>

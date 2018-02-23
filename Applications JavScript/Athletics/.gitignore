@@ -1,6 +1,9 @@
 .DS_Store
 node_modules/
 dist/
+src/pic/
+src/css/
+src/fonts/
 npm-debug.log
 yarn-error.log
 

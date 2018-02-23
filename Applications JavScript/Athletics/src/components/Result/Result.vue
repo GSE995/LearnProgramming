@@ -1,15 +1,15 @@
 <template>
 <div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12" style="width: 130px">
         <img src="/src/pic/mos.png" width="120" height="120" style="border-radius: 100px">
     </div>
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" style="margin-top: 5px">
+    <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12" style="margin-top: 5px">
         <h4 style="text-align: left">
             <router-link :to="'/event/' + result.id">
             <a style="color: #4E4E4E; font-family: 'Roboto', sans-serif;"><strong>{{result.name}}</strong></a>
             </router-link>
         </h4>
-        <p>26 Сентября 2016</p>
+        <p>{{startdate}}</p>
         <ul class="list-inline list-unstyled">
             <li><span class="badge" style="margin-right: 10px; background-color: #353535">{{result.distance}} км</span> </li>
             <li>|</li>
@@ -31,6 +31,19 @@ export default {
     data(){
         return {
         }
+    },
+    computed:{
+      startdate(){
+        let options = {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        };
+        let mill = Date.parse(this.result.start_date);
+        let dt = new Date;
+        dt.setTime(mill);
+        return dt.toLocaleString("ru", options);
+      }
     }
 }
 </script>

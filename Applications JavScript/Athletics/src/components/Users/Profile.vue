@@ -101,7 +101,6 @@
 
                     <div class="tab-pane fade in" id="tab4" >
                         <div class="row">
-                           {{user}}
                         </div>
                     </div>
                 </div>
@@ -235,12 +234,10 @@ export default {
     height: 230px;
 }
 
-
 .badge.stat{
   background-color: #4db6ac;
   border-radius: 5px;
 }
-
 
 .card.hovercard .useravatar img {
     width: 200px;

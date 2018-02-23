@@ -1,5 +1,5 @@
 <template>
-    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3" id="headevenybox">
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3" id="headevenybox">
           <div class="thumbnail" id="eventbox">
             <router-link :to="{name: 'Event', params: {id: event.id, events: event, distance: distances, startdate:startdate }}">
             <img :src="this.$store.state.src_eventimg + event.poster">
@@ -73,8 +73,6 @@ export default {
   font-size: 10px;
 }
 
-
-
 #div-distance{
   padding-bottom: 5px;
 }
@@ -88,4 +86,6 @@ padding-top: 10px;
   padding-left: 4px;
   padding-right: 4px;
 }
+
+
 </style>

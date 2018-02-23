@@ -23,11 +23,11 @@
 -подправить визуальные проблемы приложения
 ```
 ## View
-![Screenshot](upcomingEvent.png)
+![Screenshot](GitView/upcomingEvent.png)
 
-![Screenshot](athleticsEvent.png)
+![Screenshot](GitView/athleticsEvent.png)
 
-![Screenshot](mobEvent.PNG)
+![Screenshot](GitView/mobEvent.PNG)
 
 ## Build Setup
 

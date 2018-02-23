@@ -1,16 +1,25 @@
 <template>
 <div>
+  <div class="row" v-if="load">
+    <div id="loading">
+      <ul class="bokeh">
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
     <table class="table">
         <thead>
           <tr class="filters">
-            <th><input type="text" class="form-control" placeholder="№"></th>
-            <th class="hidden-sm hidden-xs"><input type="text" class="form-control" placeholder="Ф.И.О" disabled></th>
-            <th><input type="text" class="form-control" placeholder="Пол" disabled></th>
+            <th><input type="text" class="form-control" placeholder="№" disabled></th>
+            <th class="hidden-sm hidden-xs"><input type="text" class="form-control" placeholder="Ф.И.О" v-model="searchName" v-on:keyup="filterByName(searchName)"></th>
+            <th><input type="text" class="form-control" placeholder="Пол"  v-model="searchGender" v-on:keyup="filterByGender"></th>
             <th><input type="text" class="form-control" placeholder="Дата регистрации" disabled></th>
           </tr>
         </thead>
       <tbody>
-          <tr v-for="(user, index) in users" :key="index">
+          <tr v-for="(user, index) in filterUsers" :key="index">
             <td>{{index + 1}}</td>
             <td> <router-link :to="'/profile/' + user.id"> {{user.name}} {{user.surename}}</router-link></td>
             <td>{{user.gender[0]}}</td>
@@ -40,28 +49,63 @@
 export default {
   data(){
     return {
+      load: true,
       users: [],
+      searchName: '',
+      searchGender: '',
+      filterUsers: []
     }
   },
   methods:{
     validDate(date){
-        let options = {
-          year: 'numeric',
-          month: 'numeric',
-          day: 'numeric',
-        };
-        let mill = Date.parse(date);
-        let dt = new Date;
-        dt.setTime(mill);
-        return dt.toLocaleString("ru", options);
+      let options = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+      };
+      let mill = Date.parse(date);
+      let dt = new Date;
+      dt.setTime(mill);
+      return dt.toLocaleString("ru", options);
+      },
+    filterByName(){
+        if(!this.searchName || this.filterUsers.length < 1){
+          this.filterAll();
+        }else{
+          let str = new RegExp(this.searchName.toLowerCase());
+          let arr = [];
+          arr = this.filterUsers.filter((item, i)=>{
+              let name = `${item.name.toLowerCase()} ${item.surename.toLowerCase()}`;
+              return str.test(name);
+            });
+          this.filterUsers = arr;
+        }
+    },
+    filterByGender(){
+      if(!this.searchGender){
+          this.filterAll();
+      }else{
+        let arr = [];
+        arr = this.filterUsers.filter((item, i)=>{
+            let name = item['gender'].toLowerCase();
+            return name == this.searchGender.toLowerCase();
+          });
+        this.filterUsers = arr;
       }
+  },
+  filterAll(){
+    this.filterUsers = this.users;
+    if(this.searchGender)this.filterByGender();
+    if(this.searchName)this.filterByName();
+  }
   },
   created(){
     fetch(this.$store.state.url + '/api/users')
       .then((res)=>{
         res.json().then(data=>{
-          console.log(data);
           this.users = data.reverse();
+          this.filterUsers = this.users;
+          this.load = false;
         })
       })
   }

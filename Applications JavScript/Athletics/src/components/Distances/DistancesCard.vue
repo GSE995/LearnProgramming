@@ -1,8 +1,8 @@
 <template>
     <div class="col-lg-12" >
-        <div class="col-lg-4 col-md-6 col-xs-12 col-sm-8" v-for="dist in distances" :key="dist.id" style="padding-top: 10px; padding-bottom: 10px">
+        <div class="col-lg-4 col-md-6 col-xs-12 col-sm-6" v-for="dist in distances" :key="dist.id" style="padding-top: 10px; padding-bottom: 10px">
           <div style="padding-bottom: 5px"><span class="badge">{{dist.distance}}</span></div>
-            <img :src="`/src/pic/${dist.map}`" width="360" height="220">
+            <img :src="`/src/pic/${dist.map}`" width="320" height="220">
         </div>
     </div>
 </template>

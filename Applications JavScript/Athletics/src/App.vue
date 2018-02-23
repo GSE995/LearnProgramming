@@ -1,19 +1,19 @@
 <template>
-<div>
+<div class="container-fluid">
   <Headr></Headr>
   <router-view></router-view>
-  <Foot></Foot>
+     <Foot></Foot>
 </div>
 </template>
 
 <script>
-import Headr from './components/Header/Header.vue'
 import Foot from './components/Footer/Footer.vue'
+import Headr from './components/Header/Header.vue'
 export default {
   name: 'app',
   components: {
     Headr,
-    Foot
+     Foot
   }
 }
 </script>
@@ -98,6 +98,14 @@ h3{
     transform: rotate(360deg);
 }
 }
+
+input[type=text]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=text]::-ms-reveal {  display: none; width : 0; height: 0; }
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration { display: none; }
 
 /* loader */
 </style>

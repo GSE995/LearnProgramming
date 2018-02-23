@@ -1,7 +1,12 @@
 <template>
-<div class="container-fluid" style="padding-top: 50px ">
+<div class="container" style="padding-top: 50px ">
+  <div class="row" v-if="!load">
+        <div class="animationload">
+          <div class="osahanloading"></div>
+        </div>
+    </div>
  		<br>
-	<div class="container">
+
 		<div class="row">
 			<div id="carousel" class="carousel slide slidershadow">
 				<div class="carousel-inner">
@@ -20,16 +25,12 @@
 		</a>
 			</div>
 		</div>
-	</div>
 
 
-<div class="row" v-if="!load">
-        <div class="animationload">
-          <div class="osahanloading"></div>
-        </div>
-    </div>
 
-<div v-if="load" class="container">
+
+
+<div v-if="load" class="row">
   <h2 class="hidden-xs" style="margin-top: 20px;">СОРЕВНОВАНИЯ ПО БЕГУ</h2>
   	<div class="row">
   		<div class="container">
@@ -45,14 +46,16 @@
 	</div>
 	<EventCard v-for="(event, key) in filterEvent.slice(start, end)" :key="key" :event="event" :distances="setDistances(event.id)"></EventCard>
 	</div>
-	<div class="col-lg-7 col-xs-8">
-		    <ul class="pagination hidden-xs pull-right">
+  <div class="container">
+    <div class="center-block" style="padding-left: 47%">
+		    <ul class="pagination hidden-xs ">
 		    	<li v-for="number in paggination" :key="number" @click="getPageByNumber(number)"><router-link :to="'/events/runs/page/' + number">{{number}}</router-link></li>
 		    </ul>
-		    <ul class="pagination pull-right hidden-sm hidden-md hidden-lg">
+		    <ul class="pagination hidden-sm hidden-md hidden-lg">
 		          <li><a @click="backPage">«</a></li>
 		          <li><a @click="nextPage">»</a></li>
 		    </ul>
+      </div>
 	</div>
 </div>
 </template>
