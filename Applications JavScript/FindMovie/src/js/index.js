@@ -1,87 +1,74 @@
-import MovieList from './components/movi-list/list';
+import '@babel/polyfill'
+import config from './config'
 
-import moveService from './movie-service';
+import MovieList from './components/movi-list/list'
 
-import MoviePage from './components/movie-page/movie-page';
+import MoveService from './movie-service'
+
+import MoviePage from './components/movie-page/movie-page'
+
 
 const input = document.querySelector('#input-data');
-
 const movieList = document.querySelector('.movies');
-
 const filter = document.querySelector('.filters');
 
 let list;
 let filmtext;
 
-input.addEventListener('input', e => {
+let movieService = new MoveService(config);
+
+async function searchMovies(e) {
     const searchText = e.target.value;
     filmtext = searchText;
     if(!searchText){
         movieList.innerHTML = '';
         return;
     }
-    moveService.getVideoByText(searchText)
-        .then(data => {
-            console.log(data.results);
-            list = new MovieList(data);
-            list.renderMovies(data.results);
-            list.drawToDom(movieList);
-        }
-    )
+
+    let data = await movieService.getByName(searchText);
     
-});
+    list = new MovieList(data);
+    list.renderMovies(data.results);
+    list.drawToDom(movieList);
+}
 
-filter.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = e.target;
-        const dataAtr = target.getAttribute('data-filter');
-
-        if(list != null && dataAtr){
-            list.sort(dataAtr);
-        }
+async function openMoviePage(e){
+    e.preventDefault();
     
-    }
-)
-
-movieList.addEventListener('click', e => {
     const target = e.target;
     const link = target.closest('.movie-link');
-    let id;
 
-    e.preventDefault();
+    if(!link) return;
+    let id = link.getAttribute('href');
 
-    if(!link){
-        return;
-    }
     let moviepage = new MoviePage();
-    id = link.getAttribute('href');
 
-    moveService.getMovieById(id)
-    .then(data => {
-        if(data.status_code){
-            moveService.getVideoByText(filmtext)
-            .then(data => {
-                moviepage.validData(data.results, id);
-                }
-            )
-        }else{
-            moviepage.init(data);
-        }
-       
-    });
-})
+    let data = await movieService.getById(id)
 
-//             console.log(data);
-//             // first_air_date, last_air_date
-//             // массив жанров genres
-//             // name
-//             //number_of_episodes, number_of_seasons
-//             // origin_country
-//             // original_name
-//             // popularity
-//             // массив с инфой о сезонах seasons {air_date, episode_count, poster_path, season_number}
-//             // status
-//             // vote_average
+    if(data.status_code){
+        let data = await movieService.getByName(filmtext);
+        moviepage.validData(data.results, id);
+    }else{
+        moviepage.init(data);
+    }
+}
+
+function sortMovie(e){
+    e.preventDefault();
+    const target = e.target;
+    const dataAtr = target.getAttribute('data-filter');
+
+    if(list != null && dataAtr){
+        list.sort(dataAtr);
+    }
+}
+
+
+
+input.addEventListener('input', searchMovies)
+movieList.addEventListener('click', openMoviePage)
+filter.addEventListener('click', sortMovie)
+
 
 
 
