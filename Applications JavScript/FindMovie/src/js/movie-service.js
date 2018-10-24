@@ -1,24 +1,17 @@
-import config from './config';
-
-function getVideoByText(text){
-    if(!text){
-        return;
+export default class MovieService {
+    constructor(config){
+        this.config = config;
     }
-    return fetch(config.searchMovieUrl + text).then(r => {
-        let a = r.json();
-        console.log(a);
-        return a;
-    });
-}
 
-function getMovieById(id){
-    const url = `${config.baseMovieUrl}${config.queryMovie}${id}${config.apiKey}`;
+    async getByName(name){
+        if(!name) return;
+        let result = await fetch(this.config.searchMovieUrl + name)
+        return result.json();
+    }
 
-    return fetch(url)
-    .then(r => r.json());
-}
-
-export default {
-    getVideoByText,
-    getMovieById
+    async getById(id){
+        let url = `${this.config.baseMovieUrl}${this.config.queryMovie}${id}${this.config.apiKey}`;
+        let result = await fetch(url)
+        return result.json();
+    }
 }
