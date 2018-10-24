@@ -1,0 +1,7 @@
+C:\Users\goryn\source\repos\Sorting\ConsoleSorting\bin\Debug\ConsoleSorting.exe.config
+C:\Users\goryn\source\repos\Sorting\ConsoleSorting\bin\Debug\ConsoleSorting.exe
+C:\Users\goryn\source\repos\Sorting\ConsoleSorting\bin\Debug\ConsoleSorting.pdb
+C:\Users\goryn\source\repos\Sorting\ConsoleSorting\obj\Debug\ConsoleSorting.csprojResolveAssemblyReference.cache
+C:\Users\goryn\source\repos\Sorting\ConsoleSorting\obj\Debug\ConsoleSorting.csproj.CoreCompileInputs.cache
+C:\Users\goryn\source\repos\Sorting\ConsoleSorting\obj\Debug\ConsoleSorting.exe
+C:\Users\goryn\source\repos\Sorting\ConsoleSorting\obj\Debug\ConsoleSorting.pdb
