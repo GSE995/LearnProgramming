@@ -2,24 +2,21 @@ import '@babel/polyfill'
 import config from './config'
 
 import MovieList from './components/movi-list/list'
-
 import MoveService from './movie-service'
-
 import MoviePage from './components/movie-page/movie-page'
-
-
-
 
 const input = document.querySelector('#input-data');
 const movieListEl = document.querySelector('.movies');
 const filter = document.querySelector('.filters');
 
-
-
 let filmtext;
 
 let movieService = new MoveService(config);
 let movieList = new MovieList(movieListEl);
+
+input.addEventListener('input', searchMovies)
+movieListEl.addEventListener('click', openMoviePage)
+filter.addEventListener('click', sortMovie)
 
 async function searchMovies(e) {
     const searchText = e.target.value;
@@ -65,10 +62,6 @@ function sortMovie(e){
 }
 
 
-
-input.addEventListener('input', searchMovies)
-movieListEl.addEventListener('click', openMoviePage)
-filter.addEventListener('click', sortMovie)
 
 
 
