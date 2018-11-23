@@ -13,9 +13,7 @@ export default class MovieCard {
 
     createCardWrapper(movie){
         let arcticle = document.createElement('div');
-        arcticle.classList.add('col-6');
-        arcticle.classList.add('col-md-3');
-        arcticle.classList.add('movies');
+        arcticle.classList.add('movie-card');
         arcticle.innerHTML = this.getHTML(movie);
         return arcticle;
     }
@@ -23,24 +21,35 @@ export default class MovieCard {
     getHTML(data){
         this.data = this.mapData(data);
         const html = `
-        <article class="card">
-            <a href="${this.data.id}" class="movie-link" >
-                <header class="title-header">
-                    <h3>${this.data.title} ${this.data.year}</h3>
-                </header>
-            </a>
-            <div class="card-block">
-                <a href="${this.data.id}" class="movie-link" >
-                    <div class="img-card" style="background-image: url(${this.data.img})">
-                    </div>
-                </a>
-                <div class="container">
-                    <p>${this.data.popularity}</p>
-                    <p>${this.data.overview}</p>
+            <div class="poster" style="background-image: url(${this.data.img})">
+                <div class="movie-info">
+                    <h4 class="movie-name">
+                       <a href="${this.data.id}">${this.data.title} ${this.data.year}</a>
+                    </h4>
+                    <p class="description">
+                        <p>${this.data.popularity}</p>
+                        <p>${this.data.overview}</p>
+                    </p>
                 </div>
             </div>
-        </article>
         `;
+        // const html = `
+        //     <a href="${this.data.id}" class="movie-link" >
+        //         <header class="title-header">
+        //             <h3>${this.data.title} ${this.data.year}</h3>
+        //         </header>
+        //     </a>
+        //     <div class="card-block">
+        //         <a href="${this.data.id}" class="movie-link" >
+        //             <div class="img-card" style="background-image: url(${this.data.img})">
+        //             </div>
+        //         </a>
+        //         <div class="container">
+        //             <p>${this.data.popularity}</p>
+        //             <p>${this.data.overview}</p>
+        //         </div>
+        //     </div>
+        // `;
         return html;
     }
 
