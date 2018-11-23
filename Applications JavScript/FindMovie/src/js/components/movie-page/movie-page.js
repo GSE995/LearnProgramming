@@ -1,16 +1,27 @@
-import config from '../../config';
+import config from '../../config'
+import service from '../../movie-service'
 
 export default class MoviePage{
 
-    constructor(){
+    constructor(id){
         this.listWrapper = document.querySelector('.list-wrapper');
         this.movieWrapper = document.querySelector('.movie-wrapper');
+
+        
     }
 
     init(data){
         this.data = this.mapData(data);
         this.html = this.getHTML(this.data);
         this.render(this.html);
+    }
+
+    async getMovie(id){
+        let res = await service.getMovieById()
+    }
+
+    setMovie(data){
+
     }
 
     validData(data, id){
@@ -25,27 +36,28 @@ export default class MoviePage{
         let seasons = '';
         let episodes = '';
         let type = '';
-        if(data.genres.length){
-            type = `Жанр: ${data.genres.join(', ')}`
-        }
+
+        if(data.genres.length) type = `Жанр: ${data.genres.join(', ')}`;
+
         if(data.seasons){
             seasons = `Сезонов: ${data.seasons}`;
             episodes = `Серий: ${data.episodes}`
         }
+
         let html = `
-        <div class="col-2 poster" style="background-image: url(${data.img}); height: 300px"> 
-        </div>
-        <div class="col-8">
-            <h2>${data.title}</h2>
-            <p>Дата релиза: ${data.date}</p>
-            <p>Рейтинг ${data.popularity}</p>
-            <p>${type}</p>
-            <p>${seasons}</p>
-            <p>${episodes}</p>
-            <p>${data.overview}</p>
-            <p></p>
-            <p></p>
-        </div>
+            <div class="col-2 poster" style="background-image: url(${data.img}); height: 300px"> 
+            </div>
+            <div class="col-8">
+                <h2>${data.title}</h2>
+                <p>Дата релиза: ${data.date}</p>
+                <p>Рейтинг ${data.popularity}</p>
+                <p>${type}</p>
+                <p>${seasons}</p>
+                <p>${episodes}</p>
+                <p>${data.overview}</p>
+                <p></p>
+                <p></p>
+            </div>
         `;
         return html;
     }
@@ -96,9 +108,7 @@ export default class MoviePage{
     
     setPic(data){
         const src = data.poster_path || data.backdrop_path;
-        if(!src){
-            return config.noImagSrc;
-        }
+        if(!src) return config.noImagSrc;
         return config.imgUrl + src;
     }
 }
