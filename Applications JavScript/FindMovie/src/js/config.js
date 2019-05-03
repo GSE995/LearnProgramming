@@ -1,4 +1,4 @@
-const API_KEY = "cf9672e010a41355bcaf73878ea8826f";
+const API_KEY = "";
 
 export default {
     searchMovieUrl: `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=`,
