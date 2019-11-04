@@ -4,7 +4,7 @@
 Тестовая версия развернута на microsoft azure: https://athleticsapps.azurewebsites.net/
 ```
 ## View
-![Screenshot](GitView/upcomingEvent.png)
+![Screenshot](./GitView/upcomingEvent.png)
 
 ![Screenshot](GitView/athleticsEvent.png)
 
