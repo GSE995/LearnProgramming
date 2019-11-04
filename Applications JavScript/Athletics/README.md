@@ -1,6 +1,6 @@
 # Athletics
 
-Веб-приложение создано на фреймворке Vue.js (так же использовался vue-router, vuex, bootstrap 3). В серверной части испоьзуется node.js, espress, mysql. 
+Веб-приложение создано на фреймворке Vue.js (так же использовался vue-router, vuex, bootstrap 3). В серверной части испоьзуется node.js, express, mysql. 
 Тестовая версия развернута на microsoft azure: https://athleticsapps.azurewebsites.net/
 ```
 ## View
